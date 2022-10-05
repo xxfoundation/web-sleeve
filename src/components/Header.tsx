@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Link, styled } from '@mui/material';
+import { AppBar, Toolbar, Link, styled, Typography } from '@mui/material';
 
 import logo from '../assets/images/logos/xx-network-logo--white.svg';
 
@@ -10,10 +10,13 @@ const StyledContainer = styled(AppBar)(({ theme }) => ({
 
 const Header = () => (
   <StyledContainer position='static'>
-    <Toolbar>
+    <Toolbar sx={{ flexDirection: {xs: 'column', md: 'row'}, justifyContent: 'space-between'}}>
       <Link>
         <img src={logo} />
-      </Link> 
+      </Link>
+      <Typography variant='h4' sx={{fontWeight: 'bolder'}} >
+        Sleeve . Wallet Generation
+      </Typography>
     </Toolbar>
   </StyledContainer>
 )
