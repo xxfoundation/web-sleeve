@@ -34,7 +34,7 @@ const GenerateWallet: FC = () => {
   }, [setStep]);
 
   return (
-    <Container maxWidth='sm' sx={{ py: 6 }}>
+    <Container maxWidth='md' sx={{ py: 6 }}>
       {step === 1 && <Step1 onFinish={nextStep} setMnemonics={setMnemonics} />}
       {step === 2 && <Step2 mnemonics={mnemonics} cancel={cancel} onFinish={nextStep} />}
       {step === 3 && <Step3 onFinish={onFinish} standardMnemonic={mnemonics[0]} />}
