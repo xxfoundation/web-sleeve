@@ -1,30 +1,46 @@
 import React, { useCallback, useState } from 'react';
-import { keyring } from '@polkadot/ui-keyring';
 import { Alert, Box, Button, Stack, TextField, Typography } from '@mui/material';
 
 import useInput from '../../hooks/useInput';
+import type { KeyringPair } from '@polkadot/keyring/types';
+import { saveAs } from 'file-saver';
+import { Keyring } from '@polkadot/api';
 
 interface Props {
   standardMnemonic: string;
   onFinish: () => void;
 }
 
+const genesisHash = '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa';
+const getTimestampString = (date: Date) => date.toUTCString().replace(',','').replaceAll(' ', '_').replaceAll(':', '-');
+
+const exportAccount = (keyring: Keyring, keypair: KeyringPair, password: string): void => {
+  if (keypair) {
+    const exported = keyring.toJson(keypair.address, password)
+    const blob = new Blob([JSON.stringify(exported)], { type: 'application/json; charset=utf-8' });
+    saveAs(blob, `${keypair.address}_${getTimestampString(new Date())}.json`);
+  }
+};
+
 function Step3({ onFinish, standardMnemonic }: Props): React.ReactElement {
-  const [address, setAddress] = useState<string>('');
+  const [keypair, setKeypair] = useState<KeyringPair | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [password, setPassword] = useInput('');
 
-  const addAccount = useCallback((): void => {
+  const saveAccount = useCallback((): void => {
     setError(null);
     setLoading(true);
     setTimeout((): void => {
       try {
-        const wallet = keyring.addUri(standardMnemonic, password, undefined, 'sr25519');
-        setAddress(wallet.pair.address);
+        // Construct the keying, using ss58 format 55, which is registered for xx network
+        const keyring = new Keyring({ type: 'sr25519', ss58Format: 55 });
+        const pair = keyring.addFromMnemonic(standardMnemonic, {genesisHash: genesisHash}, 'sr25519');
+        setKeypair(pair);
+        exportAccount(keyring, pair, password);
         setLoading(false);
       } catch (err) {
-        setError('Unable to add your wallet.');
+        setError('Unable to save your account in an encrypted file.');
         setLoading(false);
       }
     }, 0);
@@ -34,10 +50,10 @@ function Step3({ onFinish, standardMnemonic }: Props): React.ReactElement {
     <Stack style={{ margin: '1em' }} spacing={2}>
       <Typography variant='h2'>Finish Wallet Setup</Typography>
       <Typography variant='body3'>Nicely done! You are now ready to use your wallet.</Typography>
-      {!address && (
+      {!keypair && (
         <>
           <Typography variant='body3'>
-            Define a password used to save your account on this web app.
+            Define a password used to save your account on an encrypted file.
           </Typography>
           {error && <Alert severity='error'>{error}</Alert>}
           <Stack direction='row' justifyContent='center' spacing={2}>
@@ -50,18 +66,18 @@ function Step3({ onFinish, standardMnemonic }: Props): React.ReactElement {
                 onChange={setPassword}
               />
             </Box>
-            <Button onClick={addAccount} variant='contained'>
-              Add Address
+            <Button onClick={saveAccount} variant='contained'>
+              Save Account and Display Address
             </Button>
           </Stack>
         </>
       )}
-      {address && (
+      {keypair && keypair.address && (
         <Stack spacing={0}>
           <Typography variant='body3'>
             <b>xx network blockchain address</b>
           </Typography>
-          {loading ? 'Adding...' : <Typography variant='body3'>{address}</Typography>}
+          {loading ? 'Saving...' : <Typography variant='body3'>{keypair.address}</Typography>}
         </Stack>
       )}
       <Typography variant='body4' sx={{ marginTop: '2em !important' }}>
