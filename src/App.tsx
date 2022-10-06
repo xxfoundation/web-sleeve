@@ -18,7 +18,6 @@ function App() {
         </Box>
         <Footer />
       </Stack>
-      
     </Router>
   )
 }
