@@ -116,10 +116,10 @@ const Footer = () => {
         </Grid>
           </Grid>
         </Grid>
-        <Divider sx={{ mt: 2, mb: 3, borderColor: 'grey.600' }} />
+        <Divider sx={{ mt: 2, mb: 3, borderColor: 'grey.400' }} />
         <Grid container justifyContent='space-between' spacing={3}>
           <Grid item xs={12} md={8}>
-            <Typography variant='body1'>
+            <Typography variant='body1' color='white'>
               xx Network does not distribute, offer, solicit sales of, or sell any xx coins in any
               state or jurisdiction in which such a distribution, offer, solicitation or sale
               would be unlawful prior to registration or qualification under the securities laws
