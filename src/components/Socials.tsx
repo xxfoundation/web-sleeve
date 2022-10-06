@@ -10,16 +10,16 @@ const SocialLink = styled(Link)({
   height: '1.25rem'
 });
 
-const SocialsLogo = styled('span')(({ theme }) => ({
+const SocialsLogo = styled('span')({
   position: 'absolute',
   width: '100%',
   height: '100%',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: 'black',
   borderRadius: '50%'
-}));
+});
 
 const SocialsImage = styled('img')({
   width: '0.75rem'
