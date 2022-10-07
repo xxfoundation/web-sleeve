@@ -2,58 +2,58 @@ import React, { useCallback, useState } from 'react';
 import { Alert, Box, Button, Stack, TextField, Typography } from '@mui/material';
 
 import useInput from '../../hooks/useInput';
-import type { KeyringPair } from '@polkadot/keyring/types';
 import { saveAs } from 'file-saver';
+import type { KeyringPair } from '@polkadot/keyring/types';
 import { Keyring } from '@polkadot/api';
 
 interface Props {
-  standardMnemonic: string;
+  keypair: KeyringPair | undefined;
+  keyring: Keyring | undefined;
   onFinish: () => void;
 }
 
-const genesisHash = '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa';
 const getTimestampString = (date: Date) => date.toUTCString().replace(',','').replaceAll(' ', '_').replaceAll(':', '-');
 
-const exportAccount = (keyring: Keyring, keypair: KeyringPair, password: string): void => {
-  if (keypair) {
+const exportAccount = (keypair: KeyringPair | undefined, keyring: Keyring | undefined, password: string): void => {
+  if (keypair && keyring) {
     const exported = keyring.toJson(keypair.address, password)
     const blob = new Blob([JSON.stringify(exported)], { type: 'application/json; charset=utf-8' });
     saveAs(blob, `${keypair.address}_${getTimestampString(new Date())}.json`);
   }
 };
 
-function Step3({ onFinish, standardMnemonic }: Props): React.ReactElement {
-  const [keypair, setKeypair] = useState<KeyringPair | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
+function Step3({ keypair, keyring, onFinish }: Props): React.ReactElement {
+  const [download, setDownload] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [password, setPassword] = useInput('');
 
   const saveAccount = useCallback((): void => {
     setError(null);
-    setLoading(true);
     setTimeout((): void => {
       try {
-        // Construct the keying, using ss58 format 55, which is registered for xx network
-        const keyring = new Keyring({ type: 'sr25519', ss58Format: 55 });
-        const pair = keyring.addFromMnemonic(standardMnemonic, {genesisHash: genesisHash}, 'sr25519');
-        setKeypair(pair);
-        exportAccount(keyring, pair, password);
-        setLoading(false);
+        exportAccount(keypair, keyring, password);
+        setDownload(false);
       } catch (err) {
         setError('Unable to save your account in an encrypted file.');
-        setLoading(false);
+        setDownload(true);
       }
     }, 0);
-  }, [password, standardMnemonic]);
+  }, [keypair, keyring, password]);
 
   return (
     <Stack style={{ margin: '1em' }} spacing={2}>
       <Typography variant='h2'>Finish Wallet Setup</Typography>
       <Typography variant='body3'>Nicely done! You are now ready to use your wallet.</Typography>
-      {!keypair && (
+      {keypair ?
+        <Stack spacing={0} sx={{ borderLeft: '4px solid #00A2D6', paddingLeft: '0.5em'  }}>
+          <Typography variant='body3'><b>xx network blockchain public address</b></Typography>
+          <Typography variant='body3'>{keypair?.address}</Typography>
+        </Stack>
+        : <Alert severity='error'>Keypair not detected. Error generating Sleeve Wallet. Please try again.</Alert>}
+      {keypair && download && (
         <>
           <Typography variant='body3'>
-            Define a password used to save your account on an encrypted file.
+            Define a password used to save your account on an encrypted file <i>OR</i> press <i>DONE</i>
           </Typography>
           {error && <Alert severity='error'>{error}</Alert>}
           <Stack direction='row' justifyContent='center' spacing={2}>
@@ -67,19 +67,16 @@ function Step3({ onFinish, standardMnemonic }: Props): React.ReactElement {
               />
             </Box>
             <Button onClick={saveAccount} variant='contained'>
-              Save Account and Display Address
+              Export JSON Account File
             </Button>
           </Stack>
         </>
       )}
-      {keypair && keypair.address && (
-        <Stack spacing={0}>
-          <Typography variant='body3'>
-            <b>xx network blockchain address</b>
-          </Typography>
-          {loading ? 'Saving...' : <Typography variant='body3'>{keypair.address}</Typography>}
-        </Stack>
-      )}
+      {!download &&
+        <Typography variant='body3'>
+          Account successfully exported in JSON format! Wallet generation completed.
+        </Typography>
+      }
       <Typography variant='body4' sx={{ marginTop: '2em !important' }}>
         To setup a hardware wallet:{' '}
         <a className='ml-1' href='https://xxnetwork.wiki/Ledger' rel='noreferrer' target='_blank'>
