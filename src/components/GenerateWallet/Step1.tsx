@@ -48,10 +48,11 @@ const Element = ({ body, className, header, value }: ElementProps): JSX.Element 
 
 interface Props {
   setMnemonics: (mnemonics: string[]) => void;
+  cancel: () => void;
   onFinish: () => void;
 }
 
-function Step1 ({ onFinish, setMnemonics }: Props): React.ReactElement {
+function Step1 ({ cancel, onFinish, setMnemonics }: Props): React.ReactElement {
   const { isOnline } = useNavOnline();
   const [ackOnlineRisk, setAckOnlineRisk] = useState<boolean>(false);
   const [ackBrowserRisk, setIAckBrowserRisk] = useState<boolean>(false);
@@ -170,12 +171,6 @@ function Step1 ({ onFinish, setMnemonics }: Props): React.ReactElement {
           </li>
           <li>{displayText('Using a hardware wallet')}</li>
         </ul>
-        <Typography variant='body2' sx={{ margin: '1em 0 0' }}>
-          To learn more about our quantum-ready wallets:{' '}
-          <a className='ml-1' href='https://github.com/xx-labs/sleeve'>
-            https://github.com/xx-labs/sleeve
-          </a>
-        </Typography>
       </div>
       {standardMnemonic && quantumMnemonic && (
         <div style={{ textAlign: 'right' }}>
@@ -189,11 +184,14 @@ function Step1 ({ onFinish, setMnemonics }: Props): React.ReactElement {
           />
         </div>
       )}
-      <div style={{ textAlign: 'end' }}>
+      <Stack direction='row' justifyContent='space-between'>
+        <Button onClick={cancel} variant='outlined'>
+          Back
+        </Button>
         <Button disabled={!isStepValid} onClick={onFinish} variant='contained'>
           Next
         </Button>
-      </div>
+      </Stack>
     </Stack>
   );
 }

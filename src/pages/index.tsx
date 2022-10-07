@@ -9,6 +9,7 @@ import Step3 from '../components/GenerateWallet/Step3';
 import useNavigatorOnline from '../hooks/useNavOnline';
 import { Keyring } from '@polkadot/api';
 import type { KeyringPair } from '@polkadot/keyring/types';
+import Step0 from '../components/GenerateWallet/Step0';
 
 const genesisHash = '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa';
 
@@ -60,9 +61,10 @@ const GenerateWallet: FC = () => {
 
   return (
     <Container maxWidth='md' sx={{ py: 6 }}>
-      {step === 1 && <Step1 onFinish={nextStep} setMnemonics={setMnemonics} />}
-      {step === 2 && <Step2 mnemonics={mnemonics} cancel={cancel} onFinish={onMnemonicsFinish} />}
-      {step === 3 && <Step3 onFinish={onFinish} keypair={keypair} keyring={keyring} />}
+      {step === 1 && <Step0 onFinish={nextStep} />}
+      {step === 2 && <Step1 onFinish={nextStep} cancel={cancel} setMnemonics={setMnemonics} />}
+      {step === 3 && <Step2 mnemonics={mnemonics} cancel={cancel} onFinish={onMnemonicsFinish} />}
+      {step === 4 && <Step3 onFinish={onFinish} keypair={keypair} keyring={keyring} />}
     </Container>
   );
 };
