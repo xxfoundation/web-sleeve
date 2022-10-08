@@ -92,7 +92,7 @@ function Step1 ({ cancel, onFinish, setMnemonics }: Props): React.ReactElement {
     <Stack sx={{ margin: '1em' }} spacing={2}>
       <Stack direction='row' sx={{ margin: '0.5em 1.25em 0' }} spacing={1.75}>
         {isOnline ? <span>&#128994;</span> : <span>&#128308;</span>}
-        <Typography variant='body2' sx={{ alignItems: 'center' }}>
+        <Typography variant='body2' sx={{ alignItems: 'center' }}> 
           You are {isOnline ? 'Online' : 'Offline'}!
         </Typography>
       </Stack>

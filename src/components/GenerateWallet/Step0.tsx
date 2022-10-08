@@ -14,7 +14,7 @@ function Step0 ({ onFinish }: Props): React.ReactElement {
     <Stack sx={{ margin: '1em' }} spacing={2}>
       <Stack direction='column' spacing={2}>
         <Typography variant='h3' sx={{ alignItems: 'center' }}>
-          Welcome to Sleeve Wallet Generation Tool
+          Welcome to the Sleeve Wallet Generation Tool
         </Typography>
         <Typography variant='body3'>
           Sleeve is the novel Wallet generation algorithm used by xx network.<br></br>
