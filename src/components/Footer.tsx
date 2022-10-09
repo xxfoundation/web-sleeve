@@ -1,8 +1,9 @@
-import { Box, Container, Divider, Grid, Typography, styled } from '@mui/material';
+import { Box, Container, Divider, Grid, Typography, styled, Button } from '@mui/material';
 import React from 'react';
-import logo from '../assets/images/logos/xx-network-logo--white.svg';
 import Socials from './Socials';
 import Link from './Link';
+
+import hub from '../assets/images/logos/xx_hub_logotype.svg';
 
 const ListLink = styled(Link)(({ theme }) => ({
   display: 'block',
@@ -10,6 +11,15 @@ const ListLink = styled(Link)(({ theme }) => ({
   paddingBottom: theme.spacing(1),
   color: theme.palette.primary.contrastText,
   fontSize: 14
+}));
+
+const StyledButton = styled(Button)(() => ({
+  backgroundColor: 'white',
+  margin: 'auto',
+  padding: '1em 0.75em 0.75em',
+  '&:hover': {
+    backgroundColor: 'rgb(255,255,255,0.8)',
+  }
 }));
 
 const Footer = () => {
@@ -28,7 +38,10 @@ const Footer = () => {
       >
         <Grid container justifyContent='space-between'>
           <Grid item xs={12} md='auto' sx={{ mb: 2 }}>
-            <img src={logo} />
+            {/* <img src={logo} /> */}
+            <StyledButton href='https://hub.xx.network'>
+              <img src={hub} />
+            </StyledButton>
           </Grid>
           <Grid item xs={12} md={5}>
           <Grid container spacing={3}>
