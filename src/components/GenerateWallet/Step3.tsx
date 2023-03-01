@@ -5,11 +5,11 @@ import useInput from '../../hooks/useInput';
 import { saveAs } from 'file-saver';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import { Keyring } from '@polkadot/api';
+import useNavOnline from '../../hooks/useNavOnline';
 
 interface Props {
   keypair: KeyringPair | undefined;
   keyring: Keyring | undefined;
-  onFinish: () => void;
 }
 
 const getTimestampString = (date: Date) => date.toUTCString().replace(',','').replaceAll(' ', '_').replaceAll(':', '-');
@@ -22,7 +22,8 @@ const exportAccount = (keypair: KeyringPair | undefined, keyring: Keyring | unde
   }
 };
 
-function Step3({ keypair, keyring, onFinish }: Props): React.ReactElement {
+function Step3({ keypair, keyring }: Props): React.ReactElement {
+  const { isOnline } = useNavOnline();
   const [download, setDownload] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [password, setPassword] = useInput('');
@@ -53,7 +54,7 @@ function Step3({ keypair, keyring, onFinish }: Props): React.ReactElement {
       {keypair && download && (
         <>
           <Typography variant='body3'>
-            Define a password used to save your account on an encrypted file <i>OR</i> press <i>DONE</i>
+            Define a password to save your account on an encrypted file. You can then import this file into the xx wallet.
           </Typography>
           {error && <Alert severity='error'>{error}</Alert>}
           <Stack direction='row' justifyContent='center' spacing={2}>
@@ -70,12 +71,19 @@ function Step3({ keypair, keyring, onFinish }: Props): React.ReactElement {
               Export JSON Account File
             </Button>
           </Stack>
+          <Typography variant='body3'>
+            If you don't want to export the account, you can close this page.
+          </Typography>
         </>
       )}
-      {!download &&
-        <Typography variant='body3'>
-          Account successfully exported in JSON format! Wallet generation completed.
-        </Typography>
+      {!download && (
+          <>
+            <Typography variant='body3'>
+              Account successfully exported in JSON format! Wallet generation completed.
+            </Typography>
+            {!isOnline && <Typography variant='body3'>You are still offline, reestablish your internet connection if you wish to open the xx wallet</Typography>}
+          </>
+        )
       }
       <Typography variant='body4' sx={{ marginTop: '2em !important' }}>
         To setup a hardware wallet:{' '}
@@ -84,8 +92,8 @@ function Step3({ keypair, keyring, onFinish }: Props): React.ReactElement {
         </a>
       </Typography>
       <div style={{ textAlign: 'end' }}>
-        <Button onClick={onFinish} variant='contained'>
-          Done
+        <Button href={'https://wallet.xx.network'} variant='contained' disabled={!isOnline}>
+          Open Wallet
         </Button>
       </div>
     </Stack>
