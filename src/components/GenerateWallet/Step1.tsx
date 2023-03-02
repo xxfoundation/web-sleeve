@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import { bip39Generate, generateSleeve, waitReady } from '@polkadot/wasm-crypto';
+import { bip39Generate, waitReady as waitReadyPolkadot } from '@polkadot/wasm-crypto';
+import { generateSleeve, waitReady } from '@xxnetwork/wasm-crypto';
 import {
   Alert,
   AlertColor,
@@ -75,6 +76,7 @@ function Step1 ({ cancel, onFinish, setMnemonics }: Props): React.ReactElement {
 
   const generateWallet = useCallback(async () => {
     // first wait until the WASM has been loaded (async init)
+    await waitReadyPolkadot();
     await waitReady();
 
     // generate quantum seed

@@ -1038,6 +1038,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.20.6", "@babel/runtime@^7.21.0":
+  version "7.21.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.21.0.tgz#5b55c9d394e5fcf304909a8b00c07dc217b56673"
+  integrity sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw==
+  dependencies:
+    regenerator-runtime "^0.13.11"
+
 "@babel/template@^7.18.10", "@babel/template@^7.3.3":
   version "7.18.10"
   resolved "https://registry.npmjs.org/@babel/template/-/template-7.18.10.tgz"
@@ -2000,50 +2007,56 @@
     "@types/bn.js" "^5.1.1"
     bn.js "^5.2.1"
 
-"@polkadot/wasm-bridge@6.3.1":
-  version "6.3.1"
-  resolved "https://registry.npmjs.org/@polkadot/wasm-bridge/-/wasm-bridge-6.3.1.tgz"
-  integrity sha512-1TYkHsb9AEFhU9uZj3biEnN2yKQNzdrwSjiTvfCYnt97pnEkKsZI6cku+YPZQv5w/x9CQa5Yua9e2DVVZSivGA==
+"@polkadot/wasm-bridge@6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-bridge/-/wasm-bridge-6.4.1.tgz#e97915dd67ba543ec3381299c2a5b9330686e27e"
+  integrity sha512-QZDvz6dsUlbYsaMV5biZgZWkYH9BC5AfhT0f0/knv8+LrbAoQdP3Asbvddw8vyU9sbpuCHXrd4bDLBwUCRfrBQ==
   dependencies:
-    "@babel/runtime" "^7.18.9"
+    "@babel/runtime" "^7.20.6"
 
-"@polkadot/wasm-crypto-asmjs@6.3.1":
-  version "6.3.1"
-  resolved "https://registry.npmjs.org/@polkadot/wasm-crypto-asmjs/-/wasm-crypto-asmjs-6.3.1.tgz"
-  integrity sha512-zbombRfA5v/mUWQQhgg2YwaxhRmxRIrvskw65x+lruax3b6xPBFDs7yplopiJU3r8h2pTgQvX/DUksvqz2TCRQ==
+"@polkadot/wasm-crypto-asmjs@6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto-asmjs/-/wasm-crypto-asmjs-6.4.1.tgz#3cc76bbda5ea4a7a860982c64f9565907b312253"
+  integrity sha512-UxZTwuBZlnODGIQdCsE2Sn/jU0O2xrNQ/TkhRFELfkZXEXTNu4lw6NpaKq7Iey4L+wKd8h4lT3VPVkMcPBLOvA==
   dependencies:
-    "@babel/runtime" "^7.18.9"
+    "@babel/runtime" "^7.20.6"
 
-"@polkadot/wasm-crypto-init@6.3.1", "@polkadot/wasm-crypto-init@file:./src/sleeve/wasm-crypto-init":
-  version "6.3.1"
+"@polkadot/wasm-crypto-init@6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto-init/-/wasm-crypto-init-6.4.1.tgz#4d9ab0030db52cf177bf707ef8e77aa4ca721668"
+  integrity sha512-1ALagSi/nfkyFaH6JDYfy/QbicVbSn99K8PV9rctDUfxc7P06R7CoqbjGQ4OMPX6w1WYVPU7B4jPHGLYBlVuMw==
   dependencies:
-    "@babel/runtime" "^7.18.9"
-    "@polkadot/wasm-bridge" "6.3.1"
-    "@polkadot/wasm-crypto-asmjs" "6.3.1"
-    "@polkadot/wasm-crypto-wasm" "6.3.1"
+    "@babel/runtime" "^7.20.6"
+    "@polkadot/wasm-bridge" "6.4.1"
+    "@polkadot/wasm-crypto-asmjs" "6.4.1"
+    "@polkadot/wasm-crypto-wasm" "6.4.1"
 
-"@polkadot/wasm-crypto-wasm@6.3.1", "@polkadot/wasm-crypto-wasm@file:./src/sleeve/wasm-crypto-wasm":
-  version "6.3.1"
+"@polkadot/wasm-crypto-wasm@6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto-wasm/-/wasm-crypto-wasm-6.4.1.tgz#97180f80583b18f6a13c1054fa5f7e8da40b1028"
+  integrity sha512-3VV9ZGzh0ZY3SmkkSw+0TRXxIpiO0nB8lFwlRgcwaCihwrvLfRnH9GI8WE12mKsHVjWTEVR3ogzILJxccAUjDA==
   dependencies:
-    "@babel/runtime" "^7.18.9"
-    "@polkadot/wasm-util" "6.3.1"
+    "@babel/runtime" "^7.20.6"
+    "@polkadot/wasm-util" "6.4.1"
 
-"@polkadot/wasm-crypto@6.3.1", "@polkadot/wasm-crypto@^6.3.1", "@polkadot/wasm-crypto@file:./src/sleeve/wasm-crypto":
-  version "6.3.1"
+"@polkadot/wasm-crypto@^6.3.1", "@polkadot/wasm-crypto@^6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-crypto/-/wasm-crypto-6.4.1.tgz#79310e23ad1ca62362ba893db6a8567154c2536a"
+  integrity sha512-FH+dcDPdhSLJvwL0pMLtn/LIPd62QDPODZRCmDyw+pFjLOMaRBc7raomWUOqyRWJTnqVf/iscc2rLVLNMyt7ag==
   dependencies:
-    "@babel/runtime" "^7.18.9"
-    "@polkadot/wasm-bridge" "6.3.1"
-    "@polkadot/wasm-crypto-asmjs" "6.3.1"
-    "@polkadot/wasm-crypto-init" "6.3.1"
-    "@polkadot/wasm-crypto-wasm" "6.3.1"
-    "@polkadot/wasm-util" "6.3.1"
+    "@babel/runtime" "^7.20.6"
+    "@polkadot/wasm-bridge" "6.4.1"
+    "@polkadot/wasm-crypto-asmjs" "6.4.1"
+    "@polkadot/wasm-crypto-init" "6.4.1"
+    "@polkadot/wasm-crypto-wasm" "6.4.1"
+    "@polkadot/wasm-util" "6.4.1"
 
-"@polkadot/wasm-util@6.3.1":
-  version "6.3.1"
-  resolved "https://registry.npmjs.org/@polkadot/wasm-util/-/wasm-util-6.3.1.tgz"
-  integrity sha512-12oAv5J7Yoc9m6jixrSaQCxpOkWOyzHx3DMC8qmLjRiwdBWxqLmImOVRVnFsbaxqSbhBIHRuJphVxWE+GZETDg==
+"@polkadot/wasm-util@6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/wasm-util/-/wasm-util-6.4.1.tgz#74aecc85bec427a9225d9874685944ea3dc3ab76"
+  integrity sha512-Uwo+WpEsDmFExWC5kTNvsVhvqXMZEKf4gUHXFn4c6Xz4lmieRT5g+1bO1KJ21pl4msuIgdV3Bksfs/oiqMFqlw==
   dependencies:
-    "@babel/runtime" "^7.18.9"
+    "@babel/runtime" "^7.20.6"
 
 "@polkadot/x-bigint@10.1.9", "@polkadot/x-bigint@^10.1.9":
   version "10.1.9"
@@ -2885,6 +2898,57 @@
   version "4.2.2"
   resolved "https://registry.npmjs.org/@xtuc/long/-/long-4.2.2.tgz"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
+
+"@xxnetwork/wasm-bridge@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@xxnetwork/wasm-bridge/-/wasm-bridge-1.0.0.tgz#312d708441bafbc37f7ffef7dbfb3e4788416398"
+  integrity sha512-dJTfLtz/sbJgkTFPv8z19faREOwzLXJT/bs1gBSmZoacuauhgrF68bc14C+Fj9bnnjanEf/LxsOmYfNbFpsn0Q==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
+
+"@xxnetwork/wasm-crypto-asmjs@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@xxnetwork/wasm-crypto-asmjs/-/wasm-crypto-asmjs-1.0.0.tgz#eea6d4e9a610c25ae8865db8caaa7ea83886e24c"
+  integrity sha512-6Hw7LbZxbQKsxVj9uuxWXpzZIaf0JMFyjFTXDaACIcOYJKiVlvCrpWzX2tvTrHFR87xBE5Tgn3ySh0nMcuDIPg==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
+
+"@xxnetwork/wasm-crypto-init@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@xxnetwork/wasm-crypto-init/-/wasm-crypto-init-1.0.0.tgz#c6e7b434e6d443ac2fe4c4321a85c0e3d7feb07d"
+  integrity sha512-x2mUHRf98rdOQTYDQ/M2sjP+mZCJ/t/Be9pjqTzeSH7mCN3aL9TJVz69m9P0AnegUPNkp8CDzlna9CKJE0eqNg==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
+    "@xxnetwork/wasm-bridge" "1.0.0"
+    "@xxnetwork/wasm-crypto-asmjs" "1.0.0"
+    "@xxnetwork/wasm-crypto-wasm" "1.0.0"
+
+"@xxnetwork/wasm-crypto-wasm@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@xxnetwork/wasm-crypto-wasm/-/wasm-crypto-wasm-1.0.0.tgz#7e81aefdf6b8aadfc381b54a683794a6069f083d"
+  integrity sha512-5dvdIQa337XLuB6rgh2Q8V8WwkPWbILwNA7R0cLLGn7PTbpQ2Nx/s9ixLlyJlYgsRqsSqZoKAPeBtNw8OY0TRA==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
+    "@xxnetwork/wasm-util" "1.0.0"
+
+"@xxnetwork/wasm-crypto@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@xxnetwork/wasm-crypto/-/wasm-crypto-1.0.0.tgz#fb586cf95f7c632adf59a21e45eb7dfac163b0ff"
+  integrity sha512-y+fuoT6CBR5YDMYlZGF1Nkp/BpxEdwt9h+dYFkt5a7OlhUrfmGGP2Kuz7R8aaG6KEnxQnsuiMrdej8ZPUX++Fw==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
+    "@xxnetwork/wasm-bridge" "1.0.0"
+    "@xxnetwork/wasm-crypto-asmjs" "1.0.0"
+    "@xxnetwork/wasm-crypto-init" "1.0.0"
+    "@xxnetwork/wasm-crypto-wasm" "1.0.0"
+    "@xxnetwork/wasm-util" "1.0.0"
+
+"@xxnetwork/wasm-util@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@xxnetwork/wasm-util/-/wasm-util-1.0.0.tgz#f0da0bc3f17179e1bac976b1d772b49c559afd6e"
+  integrity sha512-sGaK6Fp2aFSpCmyYI0Gp02yDFx1bkGIXYkHlYT2A1TvITS18a/VUnzYYWdO5drYRL5h6gsMYVaQxz8ryQVQ2MA==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
 
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.6"
@@ -8410,6 +8474,11 @@ regenerate@^1.4.2:
   version "1.4.2"
   resolved "https://registry.npmjs.org/regenerate/-/regenerate-1.4.2.tgz"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
+
+regenerator-runtime@^0.13.11:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
+  integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
 regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.9:
   version "0.13.9"
