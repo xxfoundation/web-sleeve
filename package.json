@@ -8,11 +8,6 @@
     "eject": "react-scripts eject",
     "lint": "eslint src"
   },
-  "resolutions": {
-    "@polkadot/wasm-crypto": "file:./src/sleeve/wasm-crypto",
-    "@polkadot/wasm-crypto-init": "file:./src/sleeve/wasm-crypto-init",
-    "@polkadot/wasm-crypto-wasm": "file:./src/sleeve/wasm-crypto-wasm"
-  },
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -22,9 +17,9 @@
     "@polkadot/api-derive": "^9.4.3",
     "@polkadot/types": "^9.4.3",
     "@polkadot/ui-keyring": "^2.9.10",
-    "@polkadot/wasm-crypto": "^6.3.1",
+    "@polkadot/wasm-crypto": "^6.4.1",
+    "@xxnetwork/wasm-crypto": "^1.0.0",
     "file-saver": "^2.0.5",
-    "notistack": "^2.0.5",
     "react": "18.2.0",
     "react-app-rewired": "^2.2.1",
     "react-dom": "18.2.0",
